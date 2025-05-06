@@ -15,16 +15,9 @@ public abstract class PCBuilder {
     public void reset() {
         equipo = new Equipo();
     }
+
     protected Catalogo getCatalogo() {
         return catalogo;
-    }
-
-    public Equipo getEquipo() {
-        return equipo;
-    }
-
-    public Presupuesto getPresupuesto() {
-        return new Presupuesto(equipo,cliente, LocalDate.now());
     }
 
     abstract void setCpu();
@@ -39,6 +32,14 @@ public abstract class PCBuilder {
 
     public void setCliente(String cliente) {
         this.cliente = cliente;
+    }
+
+    public Presupuesto getPresupuesto() {
+        return new Presupuesto(equipo,cliente, LocalDate.now());
+    }
+
+    protected Equipo getEquipo() {
+        return equipo;
     }
 
     protected void addComponente(Componente componente) {

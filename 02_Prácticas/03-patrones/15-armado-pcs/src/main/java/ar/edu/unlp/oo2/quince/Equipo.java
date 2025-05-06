@@ -11,7 +11,7 @@ public class Equipo {
     }
 
     public void addComponente(Componente componente) {
-        componentes.add(componente);
+        if (componente != null) componentes.add(componente);
     }
 
     public double consumoTotal(){

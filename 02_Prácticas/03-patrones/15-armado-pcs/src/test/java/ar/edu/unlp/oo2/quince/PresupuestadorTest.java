@@ -3,7 +3,6 @@ package ar.edu.unlp.oo2.quince;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class PresupuestadorTest {
@@ -15,7 +14,8 @@ public class PresupuestadorTest {
     Componente gabineteEstandar, gabineteIntermedio, gabineteGamer;
     Componente fuente800W, fuente900W;//100+200+300+300 = 900
     Catalogo catalogo = new Catalogo();
-    Presupuestador presupuestador;
+    Director director = new Director();
+    Presupuesto presupuesto;
     @BeforeEach
     void setUp(){
         ram8 = new Componente("RAM","8 GB",20000,50);
@@ -37,24 +37,26 @@ public class PresupuestadorTest {
         fuente900W = new Componente("Fuente","Fuente 900W",90000,0);
         List<Componente> listaCatalogo = List.of(ram8,ram16,ram3232,cpuBasico,cpuIntermedio,cpuGamer,hdd500,ssd500,ssd500ssd1tb,noGpu,gtx1650,rtx4090,gabineteEstandar,gabineteIntermedio,gabineteGamer,fuente800W,fuente900W);
         catalogo.agregarComponentes(listaCatalogo);
-        presupuestador = new Presupuestador(catalogo);
     }
 
     @Test
     public void armarPresupuestoBasicoTest(){
-        Presupuesto presupuesto = presupuestador.armarPresupuestoBasico("Cliente 1");
+        director.setBuilder(new PCBasicaBuilder(catalogo));
+        presupuesto = director.armarPresupuesto("Juan");
         presupuesto.imprimirPresupuesto();
     }
 
     @Test
     public void armarPresupuestoIntermedioTest(){
-        Presupuesto presupuesto = presupuestador.armarPresupuestoIntermedio("Cliente 2");
+        director.setBuilder(new PCIntermediaBuilder(catalogo));
+        presupuesto = director.armarPresupuesto("Martin");
         presupuesto.imprimirPresupuesto();
     }
 
     @Test
     public void armarPresupuestoGamerTest(){
-        Presupuesto presupuesto = presupuestador.armarPresupuestoGamer("Cliente 3");
+        director.setBuilder(new PCGamerBuilder(catalogo));
+        presupuesto = director.armarPresupuesto("Lucas");
         presupuesto.imprimirPresupuesto();
     }
 }
