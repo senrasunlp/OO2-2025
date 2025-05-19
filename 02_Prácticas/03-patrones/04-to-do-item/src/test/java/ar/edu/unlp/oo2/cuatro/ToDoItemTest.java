@@ -25,6 +25,8 @@ public class ToDoItemTest {
             studyItem.workedTime();
         });
         assertEquals("El objeto ToDoItem no fue iniciado.", exception.getMessage());
+        studyItem.addComment("Pending Item");
+        assertEquals(1, studyItem.getComments().size());
         studyItem.start();
         assertTrue(studyItem.getState() instanceof InProgress);
     }
@@ -37,6 +39,8 @@ public class ToDoItemTest {
         studyItem.togglePause();
         assertTrue(studyItem.getState() instanceof Paused);
         assertTrue(studyItem.workedTime() instanceof Duration);
+        studyItem.addComment("InProgress Item");
+        assertEquals(1, studyItem.getComments().size());
         studyItem.finish();
         assertTrue(studyItem.getState() instanceof Finished);
     }
@@ -50,21 +54,27 @@ public class ToDoItemTest {
         studyItem.togglePause();
         assertTrue(studyItem.getState() instanceof InProgress);
         assertTrue(studyItem.workedTime() instanceof Duration);
+        studyItem.addComment("Paused Item");
+        assertEquals(1, studyItem.getComments().size());
         studyItem.finish();
         assertTrue(studyItem.getState() instanceof Finished);
     }
 
     @Test
-    void testInPausedItem(){
+    void testFinishedItem(){
         studyItem = new ToDoItem("Study OOP for 1 hour");
         studyItem.start();
         studyItem.finish();
         assertTrue(studyItem.getState() instanceof Finished);
         assertTrue(studyItem.workedTime() instanceof Duration);
+        studyItem.addComment("Finished Item");
+        assertEquals(0, studyItem.getComments().size());
         exception = assertThrows(RuntimeException.class, () -> {
             studyItem.togglePause();
         });
         assertEquals("El objeto ToDoItem no se encuentra en estado Paused o In-Progress.", exception.getMessage());
     }
+
+
 
 }

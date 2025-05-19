@@ -16,4 +16,9 @@ public abstract class State {
     }
 
     public abstract Duration workedTime(ToDoItem toDoItem);
+
+    public void addComment(ToDoItem toDoItem, String comment) {
+        //Agrega un comentario salvo en estado Finished, que no hace nada
+        toDoItem.addCommentToList(comment);
+    }
 }

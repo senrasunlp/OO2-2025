@@ -12,6 +12,6 @@ public class Planta extends Empleado{
         return 50000;
     }
     public double adicional(){
-        return (casado ? 5000 : 0) + cantidadHijos * 2000 + 2000*antiguedad;
+        return (casado ? 5000 : 0) + cantidadHijos * 2000 + antiguedad * 2000;
     }
 }

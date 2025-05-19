@@ -9,7 +9,7 @@ public class Temporario extends Empleado {
     }
 
     public double basico(){
-        return 20000 + horasTrabajo*300;
+        return 20000 + horasTrabajo * 300;
     }
 
     public double adicional(){

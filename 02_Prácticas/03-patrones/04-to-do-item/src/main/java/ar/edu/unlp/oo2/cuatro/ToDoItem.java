@@ -17,9 +17,6 @@ public class ToDoItem {
         this.comments = new ArrayList<String>();
         this.state = new Pending();
     }
-    public void changeState(State newState){
-        this.state = newState;
-    }
     public void start(){
         this.state.start(this);
         this.startDate = LocalDateTime.now();
@@ -39,7 +36,7 @@ public class ToDoItem {
     }
 
     public void addComment(String comment){
-        comments.add(comment);
+        this.state.addComment(this, comment);
     }
 
     public LocalDateTime getStartDate(){
@@ -48,6 +45,18 @@ public class ToDoItem {
 
     public LocalDateTime getFinishDate(){
         return this.finishDate;
+    }
+
+    public void addCommentToList(String comment){
+        this.comments.add(comment);
+    }
+
+    public List<String> getComments(){
+        return this.comments;
+    }
+
+    public void changeState(State newState){
+        this.state = newState;
     }
 
     public State getState(){
