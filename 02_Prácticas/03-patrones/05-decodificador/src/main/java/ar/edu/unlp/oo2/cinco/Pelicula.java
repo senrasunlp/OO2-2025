@@ -9,8 +9,8 @@ public class Pelicula {
     private int estreno;
     private List<Pelicula> peliculasSimilares;
 
-    public Pelicula(String titulo, double puntaje, int estreno) {
-        this.nombre = titulo;
+    public Pelicula(String nombre, double puntaje, int estreno) {
+        this.nombre = nombre;
         this.puntaje = puntaje;
         this.estreno = estreno;
         peliculasSimilares = new ArrayList<Pelicula>();

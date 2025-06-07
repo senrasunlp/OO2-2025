@@ -10,7 +10,6 @@ public class Similaridad extends Criterio{
         List<Pelicula> ultimasVistas = decodificador.getUltimasVistas();
         List<Pelicula> similares = new ArrayList<Pelicula>();
         ultimasVistas.forEach(vista -> similares.addAll(vista.getPeliculasSimilares()));
-        List<Pelicula> filtradas = this.peliculasSinUltimasVistas(decodificador.getUltimasVistas(),similares);
-        return filtradas;
+        return this.peliculasSinUltimasVistas(decodificador.getUltimasVistas(),similares);
     }
 }
